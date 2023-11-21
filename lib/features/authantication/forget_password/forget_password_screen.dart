@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/utils/app_components/widgets/default_button.dart';
-import '../../core/utils/app_components/widgets/default_text_form_field.dart';
-import '../../core/utils/app_paths.dart';
-import '../../core/utils/styles/styles.dart';
+import '../../../core/utils/app_components/widgets/default_button.dart';
+import '../../../core/utils/app_components/widgets/default_text_form_field.dart';
+import '../../../core/utils/app_paths.dart';
+import '../../../core/utils/styles/styles.dart';
+
 
 class ForgetPasswordScreen extends StatelessWidget {
   ForgetPasswordScreen({super.key});

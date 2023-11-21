@@ -1,16 +1,31 @@
 import 'package:edhp/core/network/dio_helper.dart';
 import 'package:edhp/core/network/end_point.dart';
 import 'package:edhp/core/utils/app_constants.dart';
-import 'package:edhp/features/login/cubit/states.dart';
 import 'package:edhp/models/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'states.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoginInitialState());
 
   static LoginCubit get(BuildContext context) =>BlocProvider.of(context);
 
+
+  IconData suffix = Icons.visibility_outlined;
+  bool isPassword = true;
+  bool rememberMe = false;
+
+  void changePasswordVisibility(){
+    isPassword = !isPassword;
+    suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+    emit(LoginChangePasswordVisibility());
+  }
+
+  void changeRememberMeState(){
+    rememberMe = !rememberMe;
+    emit(LoginChangeRememberMeState());
+  }
 
   Future login({
     required String username ,

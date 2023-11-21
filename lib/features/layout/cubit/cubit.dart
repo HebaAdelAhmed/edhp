@@ -7,6 +7,7 @@ import 'package:edhp/features/call_center/call_center_screen.dart';
 import 'package:edhp/features/home/home_screen.dart';
 import 'package:edhp/features/layout/cubit/states.dart';
 import 'package:edhp/features/medical_file/medical_file_screen.dart';
+import 'package:edhp/features/profile/cubit/get_profile_cubit.dart';
 import 'package:edhp/features/settings/settings_screen.dart';
 import 'package:edhp/models/user_profile_model.dart';
 import 'package:flutter/material.dart';
@@ -146,18 +147,18 @@ class LayoutCubit extends Cubit<LayoutStates>{
     emit(ChangeLanguageSettingsState());
   }
 
-  GetUserProfile ? getUserProfileModel;
-  Future getProfile() async{
+  Future getProfile(BuildContext context) async {
     emit(GetProfileLoadingState());
     await DioHelper.getData(
       path: EndPoint.getProfile ,
       token: token,
     ).then((value) {
       print(value.data);
-      getUserProfileModel = GetUserProfile.fromJson(value.data);
-      print(getUserProfileModel);
+      GetProfileCubit.get(context).userProfileModel = GetUserProfile.fromJson(value.data);
+      print(GetProfileCubit.get(context).userProfileModel!.userName);
       emit(GetProfileSuccessfullyState());
     }).catchError((error) {
+      print(error.toString());
       emit(GetProfileErrorState());
     });
   }

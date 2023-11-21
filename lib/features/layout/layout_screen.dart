@@ -1,9 +1,8 @@
 import 'package:edhp/core/utils/app_colors.dart';
-import 'package:edhp/core/utils/app_paths.dart';
 import 'package:edhp/features/layout/cubit/cubit.dart';
+import 'package:edhp/features/profile/cubit/get_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'cubit/states.dart';
 
@@ -13,9 +12,12 @@ class LayoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LayoutCubit(),
+      create: (context) => LayoutCubit()..getProfile(context),
       child: BlocConsumer<LayoutCubit, LayoutStates>(
         listener: (context, state) {
+          if(state is ChangeBottomNavigationBarState){
+            GetProfileCubit.get(context).getProfile();
+          }
         },
         builder: (context, state) {
           LayoutCubit cubit = LayoutCubit.get(context);

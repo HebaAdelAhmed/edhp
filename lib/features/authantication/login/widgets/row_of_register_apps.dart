@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/utils/app_paths.dart';
+import '../../../../../core/utils/app_paths.dart';
 import 'clickable_register_app_container_item.dart';
 
 class RowOfRegisterApps extends StatelessWidget {

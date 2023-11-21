@@ -13,3 +13,7 @@ class LoginErrorState extends LoginStates {
     required this.error,
   });
 }
+
+class LoginChangePasswordVisibility extends LoginStates {}
+
+class LoginChangeRememberMeState extends LoginStates {}

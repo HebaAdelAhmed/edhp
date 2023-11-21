@@ -7,10 +7,12 @@ import 'package:edhp/features/settings/widgets/edit_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/utils/app_colors.dart';
 import '../../core/utils/app_paths.dart';
 import '../../core/utils/styles/styles.dart';
+import '../layout/cubit/states.dart';
 import 'cubit/state.dart';
 
 class EditProfileScreen extends StatelessWidget {
@@ -34,19 +36,39 @@ class EditProfileScreen extends StatelessWidget {
       ],
       child: BlocConsumer<EditProfileCubit, EditProfileStates>(
         listener: (context, state) {
-          // TODO: implement listener
+          if(state is EditProfileSuccessfullyState){
+            GetProfileCubit.get(context).getProfile();
+          }
         },
         builder: (context, state) {
+          nameController.text = GetProfileCubit.get(context).userProfileModel!.profileName.toString();
+          usernameController.text = GetProfileCubit.get(context).userProfileModel!.userName.toString();
+          emailController.text = GetProfileCubit.get(context).userProfileModel!.email.toString();
+          identityNumberController.text = GetProfileCubit.get(context).userProfileModel!.identityNumber.toString();
+          phoneNumberController.text = GetProfileCubit.get(context).userProfileModel!.userName.toString();
           return Scaffold(
+            appBar: AppBar(
+              actions: [
+                InkWell(
+                  onTap: (){
+                    GoRouter.of(context).pop();
+                    GetProfileCubit.get(context).getProfile();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(18.0),
+                    child: Center(child: Text('رجوع' , style: Styles.textStyle16W500.copyWith(color: AppColors.lightGrayColor),)),
+                  ),
+                ),
+              ],
+            ),
             body: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: SingleChildScrollView(
+                child:  SingleChildScrollView(
                   child: Form(
                     key: formKey,
                     child: Column(
                       children: [
-                        const BackCustomAppBar(),
                         const SizedBox(
                           height: 4,
                         ),
@@ -157,7 +179,11 @@ class EditProfileScreen extends StatelessWidget {
                                   mobileNumber: phoneNumberController.text,
                                   email: emailController.text,
                                   identityNumber: identityNumberController.text,
-                              );
+                              ).then((value) {
+                                GetProfileCubit cubit = GetProfileCubit.get(context);
+                                cubit.getProfile();
+                                GoRouter.of(context).pop();
+                              });
                             }
                           },
                           text: 'حفظ التغييرات' ,

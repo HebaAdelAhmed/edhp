@@ -69,7 +69,7 @@ class SelectTheCompanyScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    itemCount: 2,
+                    itemCount: CompanyItemCubit.get(context).organizationItemsList.length,
                   ),
                 ),
                 SizedBox(

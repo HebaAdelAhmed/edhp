@@ -1,15 +1,15 @@
-import 'package:edhp/features/login/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/utils/app_colors.dart';
-import '../../core/utils/app_components/widgets/default_button.dart';
-import '../../core/utils/app_components/widgets/default_text_button.dart';
-import '../../core/utils/app_components/widgets/default_text_form_field.dart';
-import '../../core/utils/app_paths.dart';
-import '../../core/utils/app_routers.dart';
-import '../../core/utils/styles/styles.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/app_components/widgets/default_button.dart';
+import '../../../../core/utils/app_components/widgets/default_text_button.dart';
+import '../../../../core/utils/app_components/widgets/default_text_form_field.dart';
+import '../../../../core/utils/app_paths.dart';
+import '../../../../core/utils/app_routers.dart';
+import '../../../../core/utils/styles/styles.dart';
+import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 import 'widgets/or_divider.dart';
 import 'widgets/remember_me_row.dart';
@@ -83,10 +83,11 @@ class LoginScreen extends StatelessWidget {
                           },
                           fieldName: 'كلمة السر',
                           suffixIcon: Icons.lock_outline,
-                          prefixIcon: Icons.visibility_outlined,
+                          prefixIcon: cubit.suffix,
                           onPressedPrefixIcon: () {
-
+                            cubit.changePasswordVisibility();
                           },
+                          obscureText: cubit.isPassword,
                         ),
                         const RememberMeRow(),
                         const SizedBox(height: 26,),
@@ -100,9 +101,7 @@ class LoginScreen extends StatelessWidget {
                               cubit.login(
                                 username: phoneNumberController.text.trim(),
                                 password: passwordController.text.trim(),
-                              ).then((value) {
-                                GoRouter.of(context).push(AppRouters.kLayoutScreen);
-                              });
+                              );
                             }
                           },
                           text: ' دخول',

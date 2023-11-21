@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:edhp/core/network/end_point.dart';
 import 'package:edhp/core/utils/app_constants.dart';
 import 'package:edhp/models/user_profile_model.dart';
@@ -23,6 +22,7 @@ class GetProfileCubit extends Cubit<GetProfileState> {
     ).then((value) {
       print(value.data);
       userProfileModel = GetUserProfile.fromJson(value.data);
+      print(userProfileModel!.userName);
       emit(GetProfileSuccessfullyState());
     }).catchError((error) {
       print(error.toString());

@@ -10,18 +10,25 @@ import 'package:go_router/go_router.dart';
 
 import '../layout/cubit/cubit.dart';
 import '../layout/cubit/states.dart';
+import '../profile/cubit/get_profile_cubit.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    bool isLoaded = false;
+
     return BlocConsumer<LayoutCubit, LayoutStates>(
       listener: (context, state) {
-        // TODO: implement listener
+        if(state is GetProfileSuccessfullyState){
+          isLoaded = true;
+        }
       },
       builder: (context, state) {
         LayoutCubit cubit = LayoutCubit.get(context);
+        if(!isLoaded || state is !GetProfileSuccessfullyState)
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: SingleChildScrollView(
@@ -65,7 +72,7 @@ class SettingScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(loginModel!.resultObject!.profileName!.toString() , style: Styles.textStyle16W400,),
+                    Text(GetProfileCubit.get(context).userProfileModel!.profileName.toString() , style: Styles.textStyle16W400,),
                     const SizedBox(
                       width: 5,
                     ),
@@ -75,7 +82,7 @@ class SettingScreen extends StatelessWidget {
                 const SizedBox(
                   height: 14,
                 ),
-                Text(loginModel!.resultObject!.userName!.toString(), style: Styles.textStyle16W400,),
+                Text(GetProfileCubit.get(context).userProfileModel!.userName.toString(), style: Styles.textStyle16W400,),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 30,
                 ),
@@ -237,6 +244,8 @@ class SettingScreen extends StatelessWidget {
             ),
           ),
         );
+        else
+          return Scaffold();
       },
 );
   }
