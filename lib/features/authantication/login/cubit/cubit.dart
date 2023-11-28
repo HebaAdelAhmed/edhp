@@ -4,6 +4,7 @@ import 'package:edhp/core/utils/app_constants.dart';
 import 'package:edhp/models/login_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/network/cache_helper.dart';
 import 'states.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
@@ -46,6 +47,7 @@ class LoginCubit extends Cubit<LoginStates> {
       print('token : ${value.data['ResultObject']['AccessToken']}');
       token = value.data['ResultObject']['AccessToken'];
       print(token);
+      CacheHelper.saveData(key: 'token', value: token);
       emit(LoginSuccessfullyState());
     }).catchError((error) {
       emit(LoginErrorState(error: error.toString()));

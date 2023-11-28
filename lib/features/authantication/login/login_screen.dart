@@ -1,3 +1,5 @@
+import 'package:edhp/core/network/cache_helper.dart';
+import 'package:edhp/core/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -30,7 +32,7 @@ class LoginScreen extends StatelessWidget {
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
           if(state is LoginSuccessfullyState){
-            GoRouter.of(context).push(AppRouters.kLayoutScreen);
+            GoRouter.of(context).pushReplacement(AppRouters.kLayoutScreen);
           }
         },
         builder: (context, state) {

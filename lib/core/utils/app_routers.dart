@@ -39,11 +39,88 @@ abstract class AppRouters {
   static const kOrganizationMembershipDataScreen = '/organizationMembershipDataScreen';
   static const kAddRelativesScreen = '/addRelativesScreen';
 
-  static final router = GoRouter(
+  static final baseRouter = GoRouter(
     routes: [
       GoRoute(
         path: kLoginScreen,
         builder: (context, state) => LoginScreen(),
+      ),
+      GoRoute(
+        path: kForgetPasswordScreen,
+        builder: (context, state) => ForgetPasswordScreen(),
+      ),
+      GoRoute(
+        path: kOtpScreen,
+        builder: (context, state) => OtpScreen(),
+      ),
+      GoRoute(
+        path: kResetPasswordScreen,
+        builder: (context, state) => ResetPasswordScreen(),
+      ),
+      GoRoute(
+        path: kSignUpScreen,
+        builder: (context, state) => SignUpScreen(),
+      ),
+      GoRoute(
+        path: kLayoutScreen,
+        builder: (context, state) => LayoutScreen(),
+      ),
+      GoRoute(
+        path: kEditProfileScreen,
+        builder: (context, state) => EditProfileScreen(),
+      ),
+      GoRoute(
+        path: kServiceScreen,
+        builder: (context, state) => ServiceScreen(),
+      ),
+      GoRoute(
+        path: kCreateMembershipScreen,
+        builder: (context, state) => CreateMembershipScreen(),
+      ),
+      GoRoute(
+        path: kMedicalNetworkScreen ,
+        builder: (context, state) => MedicalNetworkScreen(),
+      ),
+      GoRoute(
+        path: kMedicalRecordScreen ,
+        builder: (context, state) => MedicalRecordScreen(),
+      ),
+      GoRoute(
+        path: kSelectCompanyScreen ,
+        builder: (context, state) => SelectTheCompanyScreen(),
+      ),
+      GoRoute(
+        path: kMembershipDataScreen ,
+        builder: (context, state) => MembershipDataScreen(),
+      ),
+      GoRoute(
+        path: kConfirmMembershipDataScreen,
+        builder: (context, state) => ConfirmMembershipDataScreen(),
+      ),
+      GoRoute(
+        path: kPaymentMembershipScreen,
+        builder: (context, state) => PaymentScreen(),
+      ),
+      GoRoute(
+        path: kProfileScreen ,
+        builder: (context, state) => ProfileScreen(),
+      ),
+      GoRoute(
+        path: kOrganizationMembershipDataScreen ,
+        builder: (context, state) => OrganizationMembershipDataScreen(),
+      ),
+      GoRoute(
+        path: kAddRelativesScreen ,
+        builder: (context, state) => AddRelativesScreen(),
+      )
+    ],
+  );
+
+  static final skipLoginRouter = GoRouter(
+    routes: [
+      GoRoute(
+        path: kLoginScreen,
+        builder: (context, state) => LayoutScreen(),
       ),
       GoRoute(
         path: kForgetPasswordScreen,

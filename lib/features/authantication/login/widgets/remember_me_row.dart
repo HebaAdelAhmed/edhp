@@ -51,7 +51,7 @@ class RememberMeRow extends StatelessWidget {
                         )
                     ),
                   ),
-                  if(LoginCubit.get(context).rememberMe)
+                  if(LoginCubit.get(context).rememberMe!)
                     const Icon(
                     Icons.check, color: AppColors.lightGrayColor, size: 18,)
                 ],
