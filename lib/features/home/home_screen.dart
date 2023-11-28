@@ -40,142 +40,144 @@ class HomeScreen extends StatelessWidget {
               ),
               body: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 5,
-                      child: Stack(
-                        children: [
-                          Container(
-                            clipBehavior: Clip.antiAlias,
-                            width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height / 5,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Image.network(LayoutCubit.get(context).adsImage[LayoutCubit.get(context).index!] , fit: BoxFit.cover,),
-                          ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: IconButton(
-                              onPressed: (){
-                                LayoutCubit.get(context).changeAdsImageRightIcon();
-                              },
-                              icon: const Icon(Icons.arrow_forward_ios_rounded, color: AppColors.whiteColor, size: 40,),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: IconButton(
-                              onPressed: (){
-                                LayoutCubit.get(context).changeAdsImageRightIcon();
-                              },
-                              icon: const Icon(Icons.arrow_back_ios, color: AppColors.whiteColor, size: 40,),
-                            ),
-                          ),
-                        ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 30,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text('التصنيفات' , style: Styles.textStyle20W500,)
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: (){},
-                          child: Image.asset(AppPaths.product01),
-                        ),
-                        InkWell(
-                          child: Image.asset(AppPaths.product02),
-                          onTap: (){},
-                        ),
-                        InkWell(
-                          child: Image.asset(AppPaths.product03),
-                          onTap: (){},
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        SvgPicture.asset(AppPaths.medicalProfileFileIconSvg,),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text('ملفك الطبي' , style: Styles.textStyle20W500,),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: AppColors.whiteColor,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: AppColors.boxesColor,
-                                blurRadius: 5
-                            )
-                          ]
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height / 5,
+                        child: Stack(
                           children: [
-                            const Text('رقم الملف : 123456' , style: Styles.textStyle16W500,),
-                            const SizedBox(
-                              height: 15,
+                            Container(
+                              clipBehavior: Clip.antiAlias,
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height / 5,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Image.network(LayoutCubit.get(context).adsImage[LayoutCubit.get(context).index!] , fit: BoxFit.cover,),
                             ),
-                            const Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                MedicalFileContainerItem(mainText: 'الفصيلة', value: 'A+', iconPath: AppPaths.bloodTypeIcon),
-                                MedicalFileContainerItem(mainText: 'الجنس', value: 'ذكر', iconPath: AppPaths.genderIcon),
-                                MedicalFileContainerItem(mainText: 'العمر', value: '25', iconPath: AppPaths.ageIcon),
-                              ],
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: IconButton(
+                                onPressed: (){
+                                  LayoutCubit.get(context).changeAdsImageRightIcon();
+                                },
+                                icon: const Icon(Icons.arrow_forward_ios_rounded, color: AppColors.whiteColor, size: 40,),
+                              ),
                             ),
-                            TextButton(
-                              onPressed: (){
-
-                              },
-                              child: const Row(
-                                children: [
-                                  Icon(Icons.arrow_back_ios , color: AppColors.primaryBlueColor, size: 15,),
-                                  Text(
-                                    'المزيد',
-                                    style: TextStyle(
-                                        color: AppColors.primaryBlueColor,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 13,
-                                        fontFamily: 'Tajawal'
-                                    ),
-                                  ),
-                                ],
-                              )
-                            )
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: IconButton(
+                                onPressed: (){
+                                  LayoutCubit.get(context).changeAdsImageRightIcon();
+                                },
+                                icon: const Icon(Icons.arrow_back_ios, color: AppColors.whiteColor, size: 40,),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text('التصنيفات' , style: Styles.textStyle20W500,)
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: (){},
+                            child: Image.asset(AppPaths.product01),
+                          ),
+                          InkWell(
+                            child: Image.asset(AppPaths.product02),
+                            onTap: (){},
+                          ),
+                          InkWell(
+                            child: Image.asset(AppPaths.product03),
+                            onTap: (){},
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SvgPicture.asset(AppPaths.medicalProfileFileIconSvg,),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const Text('ملفك الطبي' , style: Styles.textStyle20W500,),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: AppColors.whiteColor,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: AppColors.boxesColor,
+                                  blurRadius: 5
+                              )
+                            ]
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            children: [
+                              const Text('رقم الملف : 123456' , style: Styles.textStyle16W500,),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              const Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  MedicalFileContainerItem(mainText: 'الفصيلة', value: 'A+', iconPath: AppPaths.bloodTypeIcon),
+                                  MedicalFileContainerItem(mainText: 'الجنس', value: 'ذكر', iconPath: AppPaths.genderIcon),
+                                  MedicalFileContainerItem(mainText: 'العمر', value: '25', iconPath: AppPaths.ageIcon),
+                                ],
+                              ),
+                              TextButton(
+                                onPressed: (){
+
+                                },
+                                child: const Row(
+                                  children: [
+                                    Icon(Icons.arrow_back_ios , color: AppColors.primaryBlueColor, size: 15,),
+                                    Text(
+                                      'المزيد',
+                                      style: TextStyle(
+                                          color: AppColors.primaryBlueColor,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 13,
+                                          fontFamily: 'Tajawal'
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               endDrawer: Drawer(
