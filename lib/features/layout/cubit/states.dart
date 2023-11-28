@@ -15,3 +15,5 @@ class GetProfileLoadingState extends LayoutStates {}
 class GetProfileSuccessfullyState extends LayoutStates {}
 
 class GetProfileErrorState extends LayoutStates {}
+
+class ChangeAdsImage extends LayoutStates {}

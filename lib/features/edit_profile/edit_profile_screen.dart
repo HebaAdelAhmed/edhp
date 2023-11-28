@@ -45,7 +45,7 @@ class EditProfileScreen extends StatelessWidget {
           usernameController.text = GetProfileCubit.get(context).userProfileModel!.userName.toString();
           emailController.text = GetProfileCubit.get(context).userProfileModel!.email.toString();
           identityNumberController.text = GetProfileCubit.get(context).userProfileModel!.identityNumber.toString();
-          phoneNumberController.text = GetProfileCubit.get(context).userProfileModel!.userName.toString();
+          phoneNumberController.text = GetProfileCubit.get(context).userProfileModel!.mobileNumber.toString();
           return Scaffold(
             appBar: AppBar(
               actions: [

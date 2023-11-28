@@ -5,6 +5,7 @@ import 'package:edhp/core/utils/app_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import '../../core/network/end_point.dart';
 import '../../core/utils/styles/styles.dart';
 
 class DrawerAppHeader extends StatelessWidget {
@@ -41,7 +42,7 @@ class DrawerAppHeader extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             clipBehavior: Clip.antiAlias,
-            child: Image.network(image, fit: BoxFit.cover,),
+            child: Image.network(EndPoint.getProfileImage(context), fit: BoxFit.cover,),
           ),
           const SizedBox(
             height: 12,

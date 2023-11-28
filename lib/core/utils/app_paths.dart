@@ -35,9 +35,21 @@ abstract class AppPaths {
   static const String dateIconSvg = 'assets/icons/date.svg';
   static const String imageIconSvg = 'assets/icons/image.svg';
   static const String notationIdIconSvg = 'assets/icons/notation_id.svg';
+  static const String medicalProfileFileIconSvg = 'assets/icons/medical_profile.svg';
+  static const String bloodTypeIcon = 'assets/icons/blood_type.svg';
+  static const String genderIcon = 'assets/icons/gender.svg';
+  static const String ageIcon = 'assets/icons/age.svg';
   ///
   /// Images
   ///
   static const String individualImage = 'assets/images/individual.png';
   static const String companyImage = 'assets/images/company.png';
+
+  ///
+  /// Home Image
+  ///
+  static const String product01 = 'assets/images/Products01.png';
+  static const String product02 = 'assets/images/Products02.png';
+  static const String product03 = 'assets/images/Products03.png';
+
 }

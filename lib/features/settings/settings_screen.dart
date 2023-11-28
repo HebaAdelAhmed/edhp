@@ -1,5 +1,4 @@
 import 'package:edhp/core/utils/app_colors.dart';
-import 'package:edhp/core/utils/app_constants.dart';
 import 'package:edhp/core/utils/app_paths.dart';
 import 'package:edhp/core/utils/app_routers.dart';
 import 'package:edhp/core/utils/styles/styles.dart';
@@ -7,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-
+import '../../core/network/end_point.dart';
 import '../layout/cubit/cubit.dart';
 import '../layout/cubit/states.dart';
 import '../profile/cubit/get_profile_cubit.dart';
@@ -28,8 +27,8 @@ class SettingScreen extends StatelessWidget {
       },
       builder: (context, state) {
         LayoutCubit cubit = LayoutCubit.get(context);
-        if(!isLoaded || state is !GetProfileSuccessfullyState)
-        return Padding(
+        if(!isLoaded || state is !GetProfileSuccessfullyState) {
+          return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: SingleChildScrollView(
             child: Column(
@@ -49,7 +48,7 @@ class SettingScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         clipBehavior: Clip.antiAlias,
-                        child: Image.network(AppPaths.image, fit: BoxFit.fill,),
+                        child: Image.network(EndPoint.getProfileImage(context), fit: BoxFit.fill,),
                       ),
                       Container(
                         width: 38,
@@ -244,8 +243,9 @@ class SettingScreen extends StatelessWidget {
             ),
           ),
         );
-        else
+        } else {
           return Scaffold();
+        }
       },
 );
   }

@@ -8,7 +8,7 @@ class DioHelper {
   static init(){
     dio = Dio(
       BaseOptions(
-        baseUrl: 'https://60de-41-45-148-36.ngrok.io',
+        baseUrl: baseUrl,
         receiveDataWhenStatusError: true,
       ),
     );

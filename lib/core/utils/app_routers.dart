@@ -7,13 +7,15 @@ import 'package:edhp/features/medical_record/medical_record_screen.dart';
 import 'package:edhp/features/membership_data/membership_data_screen.dart';
 import 'package:edhp/features/otp/otp_screen.dart';
 import 'package:edhp/features/payment/payment_screen.dart';
-import 'package:edhp/features/select_the_company/select_the_company_screen.dart';
 import 'package:edhp/features/service/service_screen.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/add_relatives/add_relatives_screen.dart';
 import '../../features/authantication/forget_password/forget_password_screen.dart';
 import '../../features/authantication/login/login_screen.dart';
 import '../../features/authantication/reset_password/reset_password_screen.dart';
 import '../../features/authantication/sign_up/sign_up_screen.dart';
+import '../../features/organization_membership/organization_membership_data/organization_membership_data_screen.dart';
+import '../../features/organization_membership/select_the_company/select_the_company_screen.dart';
 import '../../features/profile/profile_screen.dart';
 
 abstract class AppRouters {
@@ -34,6 +36,8 @@ abstract class AppRouters {
   static const kConfirmMembershipDataScreen = '/confirmMembershipDataScreen';
   static const kPaymentMembershipScreen = '/paymentMembershipScreen';
   static const kProfileScreen = '/profileScreen';
+  static const kOrganizationMembershipDataScreen = '/organizationMembershipDataScreen';
+  static const kAddRelativesScreen = '/addRelativesScreen';
 
   static final router = GoRouter(
     routes: [
@@ -101,6 +105,14 @@ abstract class AppRouters {
         path: kProfileScreen ,
         builder: (context, state) => ProfileScreen(),
       ),
+      GoRoute(
+        path: kOrganizationMembershipDataScreen ,
+        builder: (context, state) => OrganizationMembershipDataScreen(),
+      ),
+      GoRoute(
+        path: kAddRelativesScreen ,
+        builder: (context, state) => AddRelativesScreen(),
+      )
     ],
   );
 }

@@ -2,11 +2,11 @@ import 'package:bloc/bloc.dart';
 import 'package:edhp/core/utils/app_colors.dart';
 import 'package:edhp/core/utils/app_routers.dart';
 import 'package:edhp/features/profile/cubit/get_profile_cubit.dart';
-import 'package:edhp/features/select_the_company/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/network/dio_helper.dart';
 import 'core/utils/bloc_observer/bloc_observer.dart';
+import 'features/organization_membership/select_the_company/cubit/cubit.dart';
 
 
 void main() {

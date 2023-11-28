@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:edhp/core/network/dio_helper.dart';
 import 'package:edhp/core/network/end_point.dart';
@@ -161,5 +163,19 @@ class LayoutCubit extends Cubit<LayoutStates>{
       print(error.toString());
       emit(GetProfileErrorState());
     });
+  }
+
+  List<String> adsImage = [
+    'https://uicreative.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2021/02/22220740/auto-draft-1317-1024x683.jpg',
+    'https://uicreative.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2021/02/22220827/auto-draft-1320-1024x683.jpg',
+    'https://uicreative.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2021/02/22221000/auto-draft-1326-1024x683.jpg',
+    'https://uicreative.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2021/02/22221000/auto-draft-1326.jpg',
+    'https://elements-cover-images-0.imgix.net/ba74bcfa-aa7c-43e6-b726-2bba7733d5fb?auto=compress%2Cformat&w=1370&fit=max&s=f2de7d383a6ab16de8dd4ebf90382d68'
+  ];
+  Random random = Random();
+  int ? index = 1;
+  void changeAdsImageRightIcon(){
+    index = random.nextInt(adsImage.length);
+    emit(ChangeAdsImage());
   }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/utils/app_components/widgets/default_text_form_filed_without_label.dart';
-import '../../../core/utils/styles/styles.dart';
+import '../../../../core/utils/app_components/widgets/default_text_form_filed_without_label.dart';
+import '../../../../core/utils/styles/styles.dart';
+
 
 class MembershipTextFormField extends StatelessWidget {
 
@@ -11,14 +12,12 @@ class MembershipTextFormField extends StatelessWidget {
     required this.controller,
     required this.textInputType,
     required this.nameOfField,
-    this.isClickable = true,
   });
 
   TextEditingController controller;
   TextInputType textInputType;
   final String? Function(String? value) validation;
   final String nameOfField;
-  bool isClickable = true;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,6 @@ class MembershipTextFormField extends StatelessWidget {
                 controller: controller,
                 keyboardType: textInputType,
                 validation: validation,
-                isClickable: isClickable,
               ),
             ),
 

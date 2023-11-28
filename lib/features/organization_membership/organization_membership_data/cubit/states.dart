@@ -1,0 +1,11 @@
+abstract class OrganizationMembershipDataStates {}
+
+class OrganizationMembershipDataInitiateState extends OrganizationMembershipDataStates {}
+
+class GetPersonalImageFromGallerySuccessfullyState extends OrganizationMembershipDataStates {}
+
+class GetPersonalImageFromGalleryErrorState extends OrganizationMembershipDataStates {}
+
+class GetNationalIDImageFromGallerySuccessfullyState extends OrganizationMembershipDataStates {}
+
+class GetNationalIDImageFromGalleryErrorState extends OrganizationMembershipDataStates {}
