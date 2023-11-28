@@ -1,6 +1,6 @@
 import 'package:edhp/features/profile/cubit/get_profile_cubit.dart';
 import 'package:flutter/material.dart';
-const String baseUrl = 'https://4568-41-45-148-36.ngrok.io';
+const String baseUrl = 'Https://edhp-eg.com';
 
 class EndPoint {
   static const String login = '/apiAccount/Login';
