@@ -2,10 +2,11 @@ import 'package:edhp/core/utils/app_components/widgets/default_button.dart';
 import 'package:edhp/core/utils/app_components/widgets/default_text_button.dart';
 import 'package:edhp/core/utils/app_paths.dart';
 import 'package:edhp/core/utils/app_routers.dart';
+import 'package:edhp/features/profile/cubit/get_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import '../../core/network/end_point.dart';
+import '../../core/utils/app_colors.dart';
 import '../../core/utils/styles/styles.dart';
 
 class DrawerAppHeader extends StatelessWidget {
@@ -20,7 +21,7 @@ class DrawerAppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height / 2.26,
+      height: MediaQuery.of(context).size.height / 2.5,
       child: Column(
         children: [
           Padding(
@@ -42,7 +43,7 @@ class DrawerAppHeader extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             clipBehavior: Clip.antiAlias,
-            child: Image.network(EndPoint.getProfileImage(context), fit: BoxFit.cover,),
+            child: Image.file(GetProfileCubit.get(context).profileImage!, fit: BoxFit.cover,),
           ),
           const SizedBox(
             height: 12,
@@ -86,7 +87,7 @@ class ClickableDrawerItem extends StatelessWidget {
           GoRouter.of(context).push(pathLocationScreen);
         },
         child: Padding(
-          padding: const EdgeInsets.only(top: 8.0 , bottom: 4.0),
+          padding: const EdgeInsets.only(top: 2.0 , bottom: 2.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -94,7 +95,7 @@ class ClickableDrawerItem extends StatelessWidget {
               const SizedBox(
                 width: 10,
               ),
-              SvgPicture.asset(svgIcon),
+              SvgPicture.asset(svgIcon , width: 18,),
             ],
           ),
         ),
@@ -108,21 +109,97 @@ class DrawerAppList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        ClickableDrawerItem(text: 'خدماتنا', svgIcon: AppPaths.serviceIconSvg , pathLocationScreen: AppRouters.kServiceScreen),
-        SizedBox(
+        const ClickableDrawerItem(text: 'منتجاتنا', svgIcon: AppPaths.serviceIconSvg , pathLocationScreen: AppRouters.kServiceScreen),
+        const SizedBox(
           height: 4,
         ),
-        ClickableDrawerItem(text: 'العضويات', svgIcon: AppPaths.membershipIconSvg , pathLocationScreen: AppRouters.kCreateMembershipScreen),
-        SizedBox(
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.0),
+          child: Divider(color: AppColors.neutralGrayColor, thickness: 0.9),
+        ),
+        const ClickableDrawerItem(text: 'إشتراكات العضويات', svgIcon: AppPaths.membershipIconSvg , pathLocationScreen: AppRouters.kCreateMembershipInsideAppScreen),
+        const SizedBox(
           height: 4,
         ),
-        ClickableDrawerItem(text: 'الشبكة الطبية', svgIcon: AppPaths.medicalNetworkIconSvg, pathLocationScreen: AppRouters.kMedicalNetworkScreen),
-        SizedBox(
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.0),
+          child: Divider(color: AppColors.neutralGrayColor, thickness: 0.9),
+        ),
+
+        const ClickableDrawerItem(text: 'الشبكة الطبية', svgIcon: AppPaths.medicalNetworkIconSvg, pathLocationScreen: AppRouters.kMedicalNetworkScreen),
+        const SizedBox(
           height: 4,
         ),
-        ClickableDrawerItem(text: 'السجل المرضي', svgIcon: AppPaths.medicalRecordIconSvg, pathLocationScreen: AppRouters.kMedicalRecordScreen),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 30.0),
+          child: Divider(color: AppColors.neutralGrayColor, thickness: 0.9),
+        ),
+        const ClickableDrawerItem(text: 'السجل المرضي', svgIcon: AppPaths.medicalRecordIconSvg, pathLocationScreen: AppRouters.kMedicalRecordScreen),
+        const SizedBox(
+          height: 4,
+        ),
+        Container(
+          width: 150,
+          height: 40,
+          decoration: BoxDecoration(
+            color: AppColors.whiteColor,
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: const [
+              BoxShadow(
+                color: AppColors.boxesColor,
+                blurRadius: 10,
+                offset: Offset(1, 1), // Shadow position
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('English' , style: Styles.textStyle16W400,),
+              const SizedBox(
+                width: 8,
+              ),
+              SvgPicture.asset(AppPaths.languageIconSvg),
+            ],
+          ),
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        InkWell(
+          onTap: (){
+            GoRouter.of(context).pushReplacement(AppRouters.kLoginScreen);
+          },
+          child: Container(
+            width: 150,
+            height: 40,
+            decoration: BoxDecoration(
+              color: AppColors.whiteColor,
+              borderRadius: BorderRadius.circular(10.0),
+              boxShadow: const [
+                BoxShadow(
+                  color: AppColors.boxesColor,
+                  blurRadius: 10,
+                  offset: Offset(1, 1), // Shadow position
+                ),
+              ],
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('تسجيل الخروج' , style: Styles.textStyle16W400,),
+                const SizedBox(
+                  width: 8,
+                ),
+                SvgPicture.asset(AppPaths.logoutIconSvg , width: 16, color: Colors.red,),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -137,7 +214,7 @@ class DrawerAppFooter extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height / 10,
+          height: MediaQuery.of(context).size.height / 100,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),

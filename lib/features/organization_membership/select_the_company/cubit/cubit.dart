@@ -20,7 +20,7 @@ class CompanyItemCubit extends Cubit<CompanyItemsStates> {
     if(organizationItemsList!.isEmpty) {
       await DioHelper.getData(
         path: EndPoint.getOrganizations,
-        token: token,
+        // token: token,
       ).then((value) {
         print(value.data);
         value.data.forEach((element) {
@@ -36,9 +36,11 @@ class CompanyItemCubit extends Cubit<CompanyItemsStates> {
     }
   }
 
+  String ? nationalId;
+  int ? membershipNumber;
   ValidateOrganizationMemberModel ? validateOrganizationMemberModel;
   Future validateOrganizationMember({
-    required int organizationId,
+    // required int organizationId,
     required String identityNumber,
     required int organizationMembershipNumber,
   }) async{
@@ -46,15 +48,17 @@ class CompanyItemCubit extends Cubit<CompanyItemsStates> {
     await DioHelper.postData(
       path: EndPoint.validateOrganizationMember,
       data: {
-        "OrganizationID" : organizationId,
+        // "OrganizationID" : organizationId,
         "IdentityNumber" : identityNumber,
         "OrganizationMembershipNumber" : organizationMembershipNumber,
       },
     ).then((value) {
       print(value.data);
+      membershipNumber = organizationMembershipNumber;
+      nationalId = identityNumber;
       validateOrganizationMemberModel = ValidateOrganizationMemberModel.fromJson(value.data);
       print('#############################');
-      print(validateOrganizationMemberModel!.subscriptionInfoDTO!.profileName);
+      print(validateOrganizationMemberModel!.resultObject!.profileName);
       emit(ValidateOrganizationMemberSuccessfullyState());
     }).catchError((error) {
       print(error.toString());

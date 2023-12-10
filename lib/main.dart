@@ -3,11 +3,13 @@ import 'package:edhp/core/utils/app_colors.dart';
 import 'package:edhp/core/utils/app_constants.dart';
 import 'package:edhp/core/utils/app_routers.dart';
 import 'package:edhp/features/profile/cubit/get_profile_cubit.dart';
+import 'package:edhp/features/service/cubit/cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/network/cache_helper.dart';
 import 'core/network/dio_helper.dart';
 import 'core/utils/bloc_observer/bloc_observer.dart';
+import 'features/organization_membership/organization_membership_data/cubit/cubit.dart';
 import 'features/organization_membership/select_the_company/cubit/cubit.dart';
 
 
@@ -44,6 +46,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => GetProfileCubit()..getProfile(),
         ),
+        BlocProvider(
+          create: (context) => OurProductCubit()..getMembershipType(),
+        ),
+        BlocProvider(
+          create: (context) => OrganizationMembershipDataCubit()//..getSubscriptionInfoLookUps(),
+        )
       ],
       child: MaterialApp.router(
         theme: ThemeData(
@@ -53,8 +61,11 @@ class MyApp extends StatelessWidget {
             elevation: 0,
           )
         ),
-        routerConfig: (accessToken == null)? AppRouters.baseRouter : AppRouters.skipLoginRouter,
-        title: 'EDHP',
+        routerConfig:
+        // (accessToken == null)?
+        AppRouters.baseRouter
+            // : AppRouters.skipLoginRouter,
+       , title: 'EDHP',
       ),
     );
   }

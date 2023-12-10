@@ -54,7 +54,8 @@ class ConfirmMembershipDataScreen extends StatelessWidget {
                 ),
                 DefaultButton(
                   function: (){
-                    GoRouter.of(context).push(AppRouters.kPaymentMembershipScreen);
+                    // GoRouter.of(context).push(AppRouters.kPaymentMembershipScreen);
+                    GoRouter.of(context).push(AppRouters.kEditProfileScreen);
                   },
                   text: 'الدفع',
                 ),

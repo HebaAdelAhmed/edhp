@@ -7,3 +7,9 @@ class SubscriptionInfoLookUpLoadingState extends SubscriptionInfoLookUpStates {}
 class SubscriptionInfoLookUpSuccessfullyState extends SubscriptionInfoLookUpStates {}
 
 class SubscriptionInfoLookUpErrorState extends SubscriptionInfoLookUpStates {}
+
+class GetNewAccessTokenLoadingState extends SubscriptionInfoLookUpStates {}
+
+class GetNewAccessTokenSuccessfullyState extends SubscriptionInfoLookUpStates {}
+
+class GetNewAccessTokenErrorState extends SubscriptionInfoLookUpStates {}

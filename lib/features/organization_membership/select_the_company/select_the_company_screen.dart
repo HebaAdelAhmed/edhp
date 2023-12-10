@@ -40,6 +40,8 @@ class SelectTheCompanyScreen extends StatelessWidget {
                 const SizedBox(
                   height: 40,
                 ),
+                if(state is CompanyItemLoadingState)
+                  const CircularProgressIndicator(color: AppColors.primaryBlueColor),
                 Expanded(
                   child: GridView.builder(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2 , crossAxisSpacing: 20),
@@ -146,16 +148,20 @@ class SelectTheCompanyScreen extends StatelessWidget {
                             function: (){
                               if(formKey.currentState!.validate()){
                                 CompanyItemCubit.get(context).validateOrganizationMember(
-                                  organizationId: organizationID!,
+                                  // organizationId: organizationID!,
                                   identityNumber: notationIdController.text.trim().toString(),
                                   organizationMembershipNumber: int.parse(clubNumberController.text.trim().toString()),
                                 ).then((value) {
-                                  GoRouter.of(context).push(AppRouters.kOrganizationMembershipDataScreen);
+                                  GoRouter.of(context).push(AppRouters.kOrganizationSubscriptionScreen);
                                 });
                               }
                             },
                             text: 'تحقق',
                           ),
+                          if(state is ValidateOrganizationMemberLoadingState)
+                            const SizedBox(height: 15),
+                          if(state is ValidateOrganizationMemberLoadingState)
+                            const CircularProgressIndicator(color: AppColors.primaryBlueColor,)
                         ],
                       ),
                     ),
@@ -169,7 +175,7 @@ class SelectTheCompanyScreen extends StatelessWidget {
           ),
         ),
       );
-    },
+     },
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:edhp/core/network/end_point.dart';
 import 'package:edhp/features/edit_profile/cubit/cubit.dart';
+import 'package:edhp/features/profile/cubit/get_profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -30,8 +31,8 @@ class EditImage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                 ),
                 clipBehavior: Clip.antiAlias,
-                child: Image.network(
-                  EndPoint.getProfileImage(context),
+                child: Image.file(
+                  GetProfileCubit.get(context).profileImage!,
                   fit: BoxFit.cover,
                 ),
               ),

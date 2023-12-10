@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/utils/styles/styles.dart';
+import '../../../core/utils/styles/styles.dart';
 
-class CreateMembershipScreen extends StatelessWidget {
-  const CreateMembershipScreen({super.key});
+
+class CreateMembershipInsideAppScreen extends StatelessWidget {
+  const CreateMembershipInsideAppScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,9 @@ class CreateMembershipScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0 , vertical: 10),
           child: Column(
             children: [
+              BackCustomAppBar(),
               const SizedBox(
-                height: 50,
+                height: 30,
               ),
               const Text('إنشاء عضويات' , style: Styles.textStyle20W500,),
               const SizedBox(
@@ -39,7 +42,7 @@ class CreateMembershipScreen extends StatelessWidget {
                   Expanded(
                     child: InkWell(
                       onTap: (){
-                        GoRouter.of(context).push(AppRouters.kSelectCompanyScreen);
+                        GoRouter.of(context).push(AppRouters.kOrganizationMembershipDataScreen);
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -73,7 +76,7 @@ class CreateMembershipScreen extends StatelessWidget {
                   Expanded(
                     child: InkWell(
                       onTap: (){
-                        GoRouter.of(context).push(AppRouters.kSignUpScreen);
+                        GoRouter.of(context).push(AppRouters.kMembershipDataScreen);
                       },
                       child: Container(
                         decoration: BoxDecoration(

@@ -1,5 +1,3 @@
-import 'package:edhp/core/network/cache_helper.dart';
-import 'package:edhp/core/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -33,6 +31,18 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {
           if(state is LoginSuccessfullyState){
             GoRouter.of(context).pushReplacement(AppRouters.kLayoutScreen);
+          }else if(state is LoginErrorState){
+            final snackBar = SnackBar(
+              backgroundColor: AppColors.primaryBlueColor,
+              content: const Text('The username or password is incorrect'),
+              action: SnackBarAction(
+                label: 'Ok',
+                textColor: AppColors.whiteColor,
+                onPressed: () {
+                },
+              ),
+            );
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
         },
         builder: (context, state) {

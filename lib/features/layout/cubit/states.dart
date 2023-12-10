@@ -17,3 +17,15 @@ class GetProfileSuccessfullyState extends LayoutStates {}
 class GetProfileErrorState extends LayoutStates {}
 
 class ChangeAdsImage extends LayoutStates {}
+
+class GetProfileImageLoadingState extends LayoutStates {}
+
+class GetProfileImageSuccessfullyState extends LayoutStates {}
+
+class GetProfileImageErrorState extends LayoutStates {}
+
+class GetNewAccessTokenLoadingState extends LayoutStates {}
+
+class GetNewAccessTokenSuccessfullyState extends LayoutStates {}
+
+class GetNewAccessTokenErrorState extends LayoutStates {}

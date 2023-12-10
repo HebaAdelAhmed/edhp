@@ -39,6 +39,8 @@ abstract class AppPaths {
   static const String bloodTypeIcon = 'assets/icons/blood_type.svg';
   static const String genderIcon = 'assets/icons/gender.svg';
   static const String ageIcon = 'assets/icons/age.svg';
+  static const String logoutIconSvg = 'assets/icons/logout.svg';
+  static const String languageIconSvg = 'assets/icons/lang.svg';
   ///
   /// Images
   ///
@@ -51,5 +53,6 @@ abstract class AppPaths {
   static const String product01 = 'assets/images/Products01.png';
   static const String product02 = 'assets/images/Products02.png';
   static const String product03 = 'assets/images/Products03.png';
+  static const String cardImage = 'assets/images/card_image.png';
 
 }

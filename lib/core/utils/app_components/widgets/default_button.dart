@@ -9,6 +9,7 @@ class DefaultButton extends StatelessWidget {
   final String text;
   late double height;
   late double fontSize;
+  late Color textColor;
 
   DefaultButton({
     Key? key,
@@ -17,6 +18,7 @@ class DefaultButton extends StatelessWidget {
     this.redius = 10.0,
     required this.function,
     required this.text,
+    this.textColor = AppColors.whiteColor,
     this.height = 45,
     this.fontSize = 15,
   }) : super(key: key);
@@ -34,7 +36,7 @@ class DefaultButton extends StatelessWidget {
         onPressed: function,
         child: Text(
           text.toUpperCase(),
-          style: TextStyle(color: AppColors.whiteColor, fontSize: fontSize , fontFamily: 'Tajawal'),
+          style: TextStyle(color: textColor, fontSize: fontSize , fontFamily: 'Tajawal'),
         ),
       ),
     );

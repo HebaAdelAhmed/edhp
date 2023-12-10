@@ -12,7 +12,7 @@ class LayoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LayoutCubit()..getProfile(context),
+      create: (context) => LayoutCubit()..getNewAccessToken(context),
       child: BlocConsumer<LayoutCubit, LayoutStates>(
         listener: (context, state) {
           if(state is ChangeBottomNavigationBarState){

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/network/end_point.dart';
-import '../../core/utils/app_paths.dart';
 import '../confirm_membership_data/widgets/confirm_data_field_and_value_item.dart';
 import 'cubit/get_profile_state.dart';
 
@@ -21,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
       },
       builder: (context, state) {
         GetProfileCubit cubit = GetProfileCubit.get(context);
-        if(state is GetProfileSuccessfullyState) {
+        if(state is GetProfileSuccessfullyState || state is GetProfileImageSuccessfullyState || cubit.profileImage != null) {
           return Scaffold(
           body: SafeArea(
             child: Padding(
@@ -37,7 +36,7 @@ class ProfileScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         clipBehavior: Clip.antiAlias,
-                        child: Image.network(EndPoint.getProfileImage(context), fit: BoxFit.cover, ),
+                        child: Image.file(cubit.profileImage!, fit: BoxFit.cover, ),
                       ),
                     ),
                     const SizedBox(
@@ -75,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
         );
-        } else if(state is GetProfileLoadingState) {
+        } else if(state is GetProfileLoadingState || state is GetProfileImageLoadingState) {
           return const Scaffold(
             body: SafeArea(
               child: Center(

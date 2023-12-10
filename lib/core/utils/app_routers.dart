@@ -8,18 +8,22 @@ import 'package:edhp/features/membership_data/membership_data_screen.dart';
 import 'package:edhp/features/otp/otp_screen.dart';
 import 'package:edhp/features/payment/payment_screen.dart';
 import 'package:edhp/features/service/service_screen.dart';
+import 'package:edhp/features/splash_screen/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/add_relatives/add_relatives_screen.dart';
 import '../../features/authantication/forget_password/forget_password_screen.dart';
 import '../../features/authantication/login/login_screen.dart';
 import '../../features/authantication/reset_password/reset_password_screen.dart';
 import '../../features/authantication/sign_up/sign_up_screen.dart';
+import '../../features/organization_membership/create_membership_inside_app/create_membership__inside_app_screen.dart';
 import '../../features/organization_membership/organization_membership_data/organization_membership_data_screen.dart';
+import '../../features/organization_membership/organization_subscription/organization_subscription_screen.dart';
 import '../../features/organization_membership/select_the_company/select_the_company_screen.dart';
 import '../../features/profile/profile_screen.dart';
 
 abstract class AppRouters {
-  static const kLoginScreen = '/';
+  static const kSplashScreen = '/';
+  static const kLoginScreen = '/loginScreen';
   static const kForgetPasswordScreen = '/forgetPasswordScreen';
   static const kOtpScreen = '/otpScreen';
   static const kResetPasswordScreen = '/resetPasswordScreen';
@@ -38,9 +42,23 @@ abstract class AppRouters {
   static const kProfileScreen = '/profileScreen';
   static const kOrganizationMembershipDataScreen = '/organizationMembershipDataScreen';
   static const kAddRelativesScreen = '/addRelativesScreen';
+  static const kOrganizationSubscriptionScreen = '/organizationSubscriptionScreen';
+  static const kCreateMembershipInsideAppScreen = '/createMembershipInsideAppScreen';
 
   static final baseRouter = GoRouter(
     routes: [
+      GoRoute(
+        path: kCreateMembershipInsideAppScreen ,
+        builder: (context, state) => const CreateMembershipInsideAppScreen(),
+      ),
+      GoRoute(
+        path: kOrganizationSubscriptionScreen ,
+        builder: (context, state) => OrganizationSubscriptionScreen(),
+      ),
+      GoRoute(
+        path: kSplashScreen,
+        builder: (context, state) => const SplashScreen(),
+      ),
       GoRoute(
         path: kLoginScreen,
         builder: (context, state) => LoginScreen(),

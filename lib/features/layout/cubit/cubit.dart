@@ -1,5 +1,5 @@
+import 'dart:io';
 import 'dart:math';
-
 import 'package:bloc/bloc.dart';
 import 'package:edhp/core/network/dio_helper.dart';
 import 'package:edhp/core/network/end_point.dart';
@@ -14,8 +14,12 @@ import 'package:edhp/features/settings/settings_screen.dart';
 import 'package:edhp/models/user_profile_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_file_dialog/flutter_file_dialog.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
+import '../../../core/network/cache_helper.dart';
 import '../../../core/utils/app_paths.dart';
 
 class LayoutCubit extends Cubit<LayoutStates>{
@@ -159,10 +163,54 @@ class LayoutCubit extends Cubit<LayoutStates>{
       GetProfileCubit.get(context).userProfileModel = GetUserProfile.fromJson(value.data);
       print(GetProfileCubit.get(context).userProfileModel!.userName);
       emit(GetProfileSuccessfullyState());
+      getImageProfile(context);
     }).catchError((error) {
       print(error.toString());
       emit(GetProfileErrorState());
     });
+  }
+
+  Future getImageProfile(BuildContext context) async {
+    emit(GetProfileImageLoadingState());
+    try {
+      final response = await http.get(
+        Uri.parse(
+            '$baseUrl${EndPoint
+                .imageProfile}?referenceTypeId=1&referenceId=${GetProfileCubit.get(context).userProfileModel!
+                .profileID}'),
+        headers: {'Access-Token': token!},
+      );
+      final dir = await getTemporaryDirectory();
+      var filename = '${dir.path}/image.png';
+      // Save to filesystem
+      GetProfileCubit.get(context).profileImage = File(filename);
+      await GetProfileCubit.get(context).profileImage?.writeAsBytes(response.bodyBytes);
+      emit(GetProfileImageSuccessfullyState());
+    }catch(e){
+      print(e.toString());
+      emit(GetProfileImageErrorState());
+    }
+
+    // await DioHelper.getData(
+    //   path: EndPoint.imageProfile ,
+    //   queryParameters: {
+    //     'referenceTypeId': userProfileModel!.profileID,
+    //     'referenceId' : 1,
+    //   },
+    //   token: token,
+    // ).then((value) {
+    //   print('Get Image Profile: ');
+    //   // profileImage = Image.memory(value.data.bodyBytes).image;
+    //   profileImage = File(value.data);
+    //   print(profileImage);
+    //   print(value.data);
+    //   emit(GetProfileImageSuccessfullyState());
+    // }).catchError((error) {
+    //   print('Error');
+    //   print(error.toString());
+    //   emit(GetProfileImageErrorState());
+    // });
+
   }
 
   List<String> adsImage = [
@@ -177,5 +225,23 @@ class LayoutCubit extends Cubit<LayoutStates>{
   void changeAdsImageRightIcon(){
     index = random.nextInt(adsImage.length);
     emit(ChangeAdsImage());
+  }
+
+  Future getNewAccessToken(BuildContext context) async {
+    emit(GetNewAccessTokenLoadingState());
+    await DioHelper.getData(
+      path: EndPoint.getNewAccessToken ,
+      token: token,
+    ).then((value) {
+      print('token : ${value.data['ResultObject']['AccessToken']}');
+      token = value.data['ResultObject']['AccessToken'];
+      print(token);
+      CacheHelper.saveData(key: 'token', value: token);
+      emit(GetNewAccessTokenSuccessfullyState());
+      getProfile(context);
+    }).catchError((error) {
+      print(error.toString());
+      emit(GetNewAccessTokenErrorState());
+    });
   }
 }

@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             // TODO: implement listener
           },
           builder: (context, state) {
-            if(state is GetProfileSuccessfullyState || state is ChangeAdsImage) {
+            if(state is GetProfileSuccessfullyState || state is ChangeAdsImage || state is GetProfileImageSuccessfullyState) {
               return Scaffold(
               appBar: AppBar(
                 iconTheme: const IconThemeData(color: AppColors.blackColor),
@@ -194,7 +194,8 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             );
-            } else {
+            }
+            else {
               return const Scaffold(
                 body: Center(
                   child: CircularProgressIndicator(color: AppColors.primaryBlueColor,),

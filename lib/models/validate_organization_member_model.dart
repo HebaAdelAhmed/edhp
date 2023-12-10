@@ -1,30 +1,46 @@
 class ValidateOrganizationMemberModel {
-  SubscriptionInfoDTO? subscriptionInfoDTO;
-  Result? result;
+  int? iD;
+  int? resultType;
+  String? message;
+  ResultObject? resultObject;
+  bool? isSuccess;
+  bool? isFailed;
 
-  ValidateOrganizationMemberModel({this.subscriptionInfoDTO, this.result});
+  ValidateOrganizationMemberModel(
+      {this.iD,
+        this.resultType,
+        this.message,
+        this.resultObject,
+        this.isSuccess,
+        this.isFailed});
 
   ValidateOrganizationMemberModel.fromJson(Map<String, dynamic> json) {
-    subscriptionInfoDTO = json['SubscriptionInfoDTO'] != null
-        ? SubscriptionInfoDTO.fromJson(json['SubscriptionInfoDTO'])
+    iD = json['ID'];
+    resultType = json['ResultType'];
+    message = json['Message'];
+    resultObject = json['ResultObject'] != null
+        ? new ResultObject.fromJson(json['ResultObject'])
         : null;
-    result =
-    json['Result'] != null ? Result.fromJson(json['Result']) : null;
+    isSuccess = json['IsSuccess'];
+    isFailed = json['IsFailed'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (subscriptionInfoDTO != null) {
-      data['SubscriptionInfoDTO'] = subscriptionInfoDTO!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['ID'] = this.iD;
+    data['ResultType'] = this.resultType;
+    data['Message'] = this.message;
+    if (this.resultObject != null) {
+      data['ResultObject'] = this.resultObject!.toJson();
     }
-    if (result != null) {
-      data['Result'] = result!.toJson();
-    }
+    data['IsSuccess'] = this.isSuccess;
+    data['IsFailed'] = this.isFailed;
     return data;
   }
 }
 
-class SubscriptionInfoDTO {
+class ResultObject {
+  int? profileID;
   int? subscriptionTypeID;
   int? organizationID;
   int? membershipTypeID;
@@ -38,8 +54,9 @@ class SubscriptionInfoDTO {
   String? mobileNumber;
   String? email;
 
-  SubscriptionInfoDTO(
-      {this.subscriptionTypeID,
+  ResultObject(
+      {this.profileID,
+        this.subscriptionTypeID,
         this.organizationID,
         this.membershipTypeID,
         this.subscriptionStartDate,
@@ -52,7 +69,8 @@ class SubscriptionInfoDTO {
         this.mobileNumber,
         this.email});
 
-  SubscriptionInfoDTO.fromJson(Map<String, dynamic> json) {
+  ResultObject.fromJson(Map<String, dynamic> json) {
+    profileID = json['ProfileID'];
     subscriptionTypeID = json['SubscriptionTypeID'];
     organizationID = json['OrganizationID'];
     membershipTypeID = json['MembershipTypeID'];
@@ -68,48 +86,20 @@ class SubscriptionInfoDTO {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['SubscriptionTypeID'] = subscriptionTypeID;
-    data['OrganizationID'] = organizationID;
-    data['MembershipTypeID'] = membershipTypeID;
-    data['SubscriptionStartDate'] = subscriptionStartDate;
-    data['SubscriptionEndDate'] = subscriptionEndDate;
-    data['DiscountPercentage'] = discountPercentage;
-    data['OrganizationMembershipNumber'] = organizationMembershipNumber;
-    data['ProfileName'] = profileName;
-    data['Gender'] = gender;
-    data['IdentityNumber'] = identityNumber;
-    data['MobileNumber'] = mobileNumber;
-    data['Email'] = email;
-    return data;
-  }
-}
-
-class Result {
-  int? iD;
-  int? resultType;
-  String? message;
-  bool? isSuccess;
-  bool? isFailed;
-
-  Result(
-      {this.iD, this.resultType, this.message, this.isSuccess, this.isFailed});
-
-  Result.fromJson(Map<String, dynamic> json) {
-    iD = json['ID'];
-    resultType = json['ResultType'];
-    message = json['Message'];
-    isSuccess = json['IsSuccess'];
-    isFailed = json['IsFailed'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['ID'] = iD;
-    data['ResultType'] = resultType;
-    data['Message'] = message;
-    data['IsSuccess'] = isSuccess;
-    data['IsFailed'] = isFailed;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['ProfileID'] = this.profileID;
+    data['SubscriptionTypeID'] = this.subscriptionTypeID;
+    data['OrganizationID'] = this.organizationID;
+    data['MembershipTypeID'] = this.membershipTypeID;
+    data['SubscriptionStartDate'] = this.subscriptionStartDate;
+    data['SubscriptionEndDate'] = this.subscriptionEndDate;
+    data['DiscountPercentage'] = this.discountPercentage;
+    data['OrganizationMembershipNumber'] = this.organizationMembershipNumber;
+    data['ProfileName'] = this.profileName;
+    data['Gender'] = this.gender;
+    data['IdentityNumber'] = this.identityNumber;
+    data['MobileNumber'] = this.mobileNumber;
+    data['Email'] = this.email;
     return data;
   }
 }

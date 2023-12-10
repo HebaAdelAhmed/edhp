@@ -48,7 +48,8 @@ class SettingScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100),
                         ),
                         clipBehavior: Clip.antiAlias,
-                        child: Image.network(EndPoint.getProfileImage(context), fit: BoxFit.fill,),
+                        child: Image.file(GetProfileCubit.get(context).profileImage!,
+                          fit: BoxFit.fill,),
                       ),
                       Container(
                         width: 38,

@@ -1,6 +1,7 @@
 import 'package:edhp/core/utils/app_components/widgets/back_custom_app_bar.dart';
 import 'package:edhp/core/utils/app_components/widgets/default_button.dart';
 import 'package:edhp/core/utils/app_components/widgets/default_text_form_filed_without_label.dart';
+import 'package:edhp/core/utils/app_routers.dart';
 import 'package:edhp/features/edit_profile/cubit/cubit.dart';
 import 'package:edhp/features/profile/cubit/get_profile_cubit.dart';
 import 'package:edhp/features/settings/widgets/edit_image.dart';
@@ -38,6 +39,20 @@ class EditProfileScreen extends StatelessWidget {
         listener: (context, state) {
           if(state is EditProfileSuccessfullyState){
             GetProfileCubit.get(context).getProfile();
+          }
+          if(state is UploadProfileImageSuccessfullyState){
+            final snackBar = SnackBar(
+              backgroundColor: AppColors.primaryBlueColor,
+              content: const Text('Your Profile Image Has Been Uploaded!'),
+              action: SnackBarAction(
+                label: 'Ok',
+                textColor: AppColors.whiteColor,
+                onPressed: () {
+                },
+              ),
+            );
+            GetProfileCubit.get(context).getImageProfile();
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           }
         },
         builder: (context, state) {
@@ -90,6 +105,34 @@ class EditProfileScreen extends StatelessWidget {
                           height: 14,
                         ),
                         Text(GetProfileCubit.get(context).userProfileModel!.userName.toString() , style: Styles.textStyle16W400,),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height / 30,
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width / 1.1,
+                          height: MediaQuery.of(context).size.height / 4.2,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Image.asset(AppPaths.cardImage),
+                              Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: SizedBox(
+                                      height: MediaQuery.of(context).size.height / 9,
+                                      child: Text(
+                                        nameController.text.trim().toString() ,
+                                        style: Styles.textStyle14W400,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height / 25,
                         ),
@@ -182,7 +225,7 @@ class EditProfileScreen extends StatelessWidget {
                               ).then((value) {
                                 GetProfileCubit cubit = GetProfileCubit.get(context);
                                 cubit.getProfile();
-                                GoRouter.of(context).pop();
+                                GoRouter.of(context).push(AppRouters.kLayoutScreen);
                               });
                             }
                           },
